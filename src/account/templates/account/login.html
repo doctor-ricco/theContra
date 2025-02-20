@@ -1,3 +1,35 @@
-<h1>Login de usuário</h1>
-<h2><a href="{% url 'register' %}">Clique aqui para se registrar</a></h2>
-<h2><a href="{% url 'home' %}">Clique aqui para voltar para a home</a></h2>
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<html>
+    <head>
+        <title>{% translate "Login de usuário" %}</title>
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/lux/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+            defer="true">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"
+            defer="true">
+        </script>
+    </head>
+    <body>
+        <div class="container bg-white shadow-md p-5 mt-5 form-layout">
+            <h1>{% translate "Login de usuário" %}</h1>
+            
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ login_form | crispy }}
+
+                <input type="submit" value="{% translate "Submit" %}" class="btn btn-primary">
+            </form>
+        </div>
+    </body>
+</html>
