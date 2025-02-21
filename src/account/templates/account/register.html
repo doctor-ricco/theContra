@@ -1,13 +1,10 @@
-{% comment %} <h1>Registro de usuário</h1>
-<h2><a href="{% url 'login' %}">Clique aqui para se logar</a></h2>
-<h2><a href="{% url 'home' %}">Clique aqui para voltar para a home</a></h2> {% endcomment %}
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
 <html>
     <head>
-        <title>{% translate "Registro de usuário" %}</title>
+        <title>{% translate "User Registration" %}</title>
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/lux/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
@@ -23,15 +20,19 @@
         </script>
     </head>
     <body>
-        <div class="container bg-white shadow-md p-5 mt-5 form-layout">
-            <h1>{% translate "Registro de usuário" %}</h1>
+        <div class="container bg-white shadow p-5 form-layout">
+            <h1>{% translate "User Registration" %}</h1>
             
-        <form method="POST">
-            {% csrf_token %}
+            <form method="POST">
+                {% csrf_token %}
 
                 {{ register_form | crispy }}
 
                 <input type="submit" value="{% translate "Submit" %}" class="btn btn-primary">
+                <button type="button" class="btn btn-home" value="{% translate "back" %}" onclick="window.location.href='{% url 'home' %}'">
+                    {% translate "back" %}
+                </button>
+                <p class="text-center pt-1 mb-0"> {% translate "Already have an account?" %} <a href="{% url 'login' %}">{% translate "Login" %}</a></p>
             </form>
         </div>
     </body>

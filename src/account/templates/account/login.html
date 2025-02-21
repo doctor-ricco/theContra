@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>{% translate "Login de usuário" %}</title>
+        <title>{% translate "User Login" %}</title>
         <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/lux/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
@@ -20,15 +20,19 @@
         </script>
     </head>
     <body>
-        <div class="container bg-white shadow-md p-5 mt-5 form-layout">
-            <h1>{% translate "Login de usuário" %}</h1>
+        <div class="container bg-white shadow p-5 form-layout">
+            <h1>{% translate "User Login" %}</h1>
             
             <form method="POST">
                 {% csrf_token %}
 
                 {{ login_form | crispy }}
 
-                <input type="submit" value="{% translate "Submit" %}" class="btn btn-primary">
+                <input type="submit" value="{% translate "Submit" %}" class="btn btn-primary" style="margin-top: 30px;">
+                <button type="button" class="btn btn-home" value="{% translate "back" %}" onclick="window.location.href='{% url 'home' %}'">
+                    {% translate "back" %}
+                </button>
+                <p class="text-center pt-1 mb-0"> {% translate "Don't have an account?" %} <a href="{% url 'register' %}">{% translate "Register" %}</a></p>
             </form>
         </div>
     </body>
