@@ -1,39 +1,12 @@
+{% extends "account/_main.html" %}
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-<html>
-    <head>
-        <title>{% translate "User Login" %}</title>
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/lux/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"
-            defer="true">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"
-            defer="true">
-        </script>
-    </head>
-    <body>
-        <div class="container bg-white shadow p-5 form-layout">
-            <h1>{% translate "User Login" %}</h1>
-            
-            <form method="POST">
-                {% csrf_token %}
-
-                {{ login_form | crispy }}
-
-                <input type="submit" value="{% translate "Submit" %}" class="btn btn-primary" style="margin-top: 30px;">
-                <button type="button" class="btn btn-home" value="{% translate "back" %}" onclick="window.location.href='{% url 'home' %}'">
-                    {% translate "back" %}
-                </button>
-                <p class="text-center pt-1 mb-0"> {% translate "Don't have an account?" %} <a href="{% url 'register' %}">{% translate "Register" %}</a></p>
-            </form>
-        </div>
-    </body>
-</html>
+{% block tab_title %}{% translate "User Login" %}{% endblock %}
+{% block form_title %}{% translate "User Login" %}{% endblock %}
+{% block form_body %}
+    {{ login_form | crispy }}
+{% endblock %}
+{% block submit_action %}{% translate "Submit" %}{% endblock %}
+{% block back_text %}{% translate "Don't have an account?" %} <a href="{% url 'register' %}">{% translate "Register" %}</a>{% endblock %}

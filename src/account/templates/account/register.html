@@ -1,39 +1,30 @@
+{% extends "account/_main.html" %}
 {% load static %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
-<html>
-    <head>
-        <title>{% translate "User Registration" %}</title>
-        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/lux/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{# Block for the browser tab title #}
+{% block tab_title %}
+    {% translate "User Registration" %}
+{% endblock %}
 
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-            crossorigin="anonymous"
-            defer="true">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-            crossorigin="anonymous"
-            defer="true">
-        </script>
-    </head>
-    <body>
-        <div class="container bg-white shadow p-5 form-layout">
-            <h1>{% translate "User Registration" %}</h1>
-            
-            <form method="POST">
-                {% csrf_token %}
+{# Block for the form title displayed on page #}
+{% block form_title %}
+    {% translate "User Registration" %}
+{% endblock %}
 
-                {{ register_form | crispy }}
+{# Block for the registration form content #}
+{% block form_body %}
+    {{ register_form | crispy }}
+{% endblock %}
 
-                <input type="submit" value="{% translate "Submit" %}" class="btn btn-primary">
-                <button type="button" class="btn btn-home" value="{% translate "back" %}" onclick="window.location.href='{% url 'home' %}'">
-                    {% translate "back" %}
-                </button>
-                <p class="text-center pt-1 mb-0"> {% translate "Already have an account?" %} <a href="{% url 'login' %}">{% translate "Login" %}</a></p>
-            </form>
-        </div>
-    </body>
-</html>
+{# Block for the submit button text #}
+{% block submit_action %}{% translate "Submit" %}{% endblock %}
+
+{# Block for the login link text #}
+{% block back_text %}
+    {% translate "Already have an account?" %} 
+    <a href="{% url 'login' %}">
+        {% translate "Login" %}
+    </a>
+{% endblock %}
