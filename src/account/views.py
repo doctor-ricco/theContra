@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 
 import django.contrib.auth as auth
-from common.django_utils import arender
+from common.django_utils import arender, alogout
 
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from .models import CustomUser
@@ -42,11 +42,10 @@ async def login(request: HttpRequest) -> HttpResponse:
             
             if user:
                 await auth.alogin(request, user)
-                msg = (
-                    'Thanks for returning Writer!' if user.is_writer else
-                    'Welcome back, Client!'
+                return redirect(
+                    'writer-dashboard' if user.is_writer else
+                    'client-dashboard'
                 )
-                return HttpResponse(msg)
 
     else:
         form = CustomAuthenticationForm()
@@ -54,4 +53,7 @@ async def login(request: HttpRequest) -> HttpResponse:
     context = {'login_form' : form}
     return await arender(request, 'account/login.html', context)
 
-# Create your views here.
+
+async def logout(request: HttpRequest) -> HttpResponse:
+    await alogout(request)
+    return redirect('/')

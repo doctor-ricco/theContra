@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig', # poderia ser apenas 'account'
+    'client.apps.ClientConfig', # poderia ser apenas 'client'
+    'writer.apps.WriterConfig', # poderia ser apenas 'writer'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
