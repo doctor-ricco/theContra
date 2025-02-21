@@ -38,9 +38,11 @@ class AsyncFormMixin():
     
 
 class AsyncModelFormMixin(AsyncFormMixin):
-    @sync_to_async
-    def asave(self: forms.BaseForm): # type: ignore
-        return self.save()
+    async def asave(self: forms.ModelForm, *args, **kwargs): # type: ignore
+        @sync_to_async
+        def sync_call_save():
+            return self.save(*args, **kwargs)
+        return await sync_call_save()
 
 async def arender(*render_args, **render_kargs) -> HttpResponse:
     @sync_to_async
