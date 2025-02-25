@@ -3,17 +3,31 @@
 
 {% block content %}
     {% for article in my_articles %}
-        <div class="container bg-white shadow p-5 mt-5 form-layout-article">
+        <div class="container bg-white shadow p-5 mt-5 form-layout-article {% if article.is_premium %}premium-article{% endif %}">
             <h3>{{ article.title }}</h3>
+            <p>
+                <strong>
+                    {% if article.is_premium %}
+                        <span class="text-animated">🌟 {% translate 'Premium Article' %}</span>
+                    {% else %}
+                        🗑️ {% translate 'Standard Article' %}
+                    {% endif %}
+                </strong>
+            </p>
             <p>
                 {{ article.content }}
             </p>
             <hr>
             <div class="d-flex justify-content-between align-items-center no-wrap">
                 <em>{{ article.date_posted }}</em>
-                <a href="{% url 'update-article' article.id %}" class="btn btn-home" style="width: 35%; margin: 0;">
-                    {% translate 'Update' %}
-                </a>
+                <div class="d-flex align-items-center no-wrap" style="gap: 20px;">
+                    <a href="{% url 'update-article' article.id %}" class="btn-home" style="width: 200px; margin: 0;">
+                        {% translate 'Update' %}
+                    </a>
+                    <a href="{% url 'delete-article' article.id %}" class="btn-danger" style="width: 200px; margin: 0; ">
+                        {% translate 'Delete' %}
+                    </a>
+                </div>
             </div>
         </div>
     {% endfor %}

@@ -19,7 +19,7 @@
         </script>
     </head>
     <body>
-        <div class="container bg-white shadow p-5 form-layout">
+        <div class="container bg-white shadow p-5 form-layout" style="max-width: 560px;">
             <h1>{% block form_title %}{% endblock %}</h1>
             
             <form method="POST">
@@ -29,8 +29,8 @@
                 
                 {% endblock %}
 
-                <input type="submit" value="{% block submit_action %}{% endblock %}" class="btn btn-primary">
-                <button type="button" class="btn btn-home" value="{% translate "back" %}" onclick="window.location.href='{% url 'home' %}'">
+                <input type="submit" value="{% block submit_action %}{% endblock %}" class="btn-primary">
+                <button type="button" class="btn-home" value="{% translate "back" %}" onclick="window.location.href='{% url 'home' %}'">
                     {% translate "back" %}
                 </button>
                 <p class="text-center pt-1 mb-0 mt-4"> {% block back_text %}{% endblock %}</p>

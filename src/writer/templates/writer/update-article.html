@@ -11,8 +11,8 @@
 
             {{ update_article_form | crispy }}
 
-            <input class="btn btn-primary" type="submit" value="{% translate 'Update' %}">
-            <a href="{% url 'my-articles' %}" class="btn btn-home w-100">{% translate 'Cancel' %}</a>
+            <input class="btn-primary" type="submit" value="{% translate 'Update' %}">
+            <a href="{% url 'my-articles' %}" class="btn-home w-100">{% translate 'Cancel' %}</a>
         </form>
     </div>
 {% endblock %}

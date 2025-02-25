@@ -46,7 +46,6 @@
                     <a class="btn btn-secondary navbar-btn" type="button"  
                         href="{% url 'register' %}">{% translate 'Register' %}</a>
                 </li>
-                &nbsp;     &nbsp;     &nbsp; 
                 <li class="nav-item">
                     <a class="btn btn-secondary navbar-btn" type="button"  
                         href="{% url 'login' %}">{% translate 'Login' %}</a>
@@ -65,7 +64,7 @@
         <br>
         <p> {% translate 'Access our exclusive collection of reports and articles.' %} </p>
         <br>
-        <a class="btn btn-success" type="button"  href="{% url 'register' %}">
+        <a class="btn btn-success" style="width: 200px;" type="button"  href="{% url 'register' %}">
             <i class="fa fa-angle-right" aria-hidden="true"></i> 
             {% translate 'Get Started' %}
         </a>

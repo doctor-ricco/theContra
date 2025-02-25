@@ -41,12 +41,11 @@
         </button>
 
         <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="btn btn-secondary navbar-btn" type="button"  
                         href="{% url 'writer-dashboard' %}">{% translate 'Dashboard' %}</a>
                 </li>
-                &nbsp;     &nbsp;     &nbsp; 
                 <li class="nav-item">
                     <a class="btn btn-secondary navbar-btn" type="button"  
                         href="{% url 'create-article' %}">{% translate 'Create article' %}</a>
@@ -57,11 +56,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-secondary navbar-btn" type="button"  
-                        href="{% url 'login' %}">{% translate 'Account settings' %}</a>
+                        href="{% url 'update-user' %}">{% translate 'Account settings' %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-secondary navbar-btn" type="button"  
-                        href="{% url 'login' %}">{% translate 'Logout' %}</a>
+                        href="{% url 'home' %}">{% translate 'Logout' %}</a>
                 </li>
             </ul>
         </div>

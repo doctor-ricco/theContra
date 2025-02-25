@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpRequest
 from common.auth import awriter_required, aget_user, ensure_for_current_user # type: ignore
 from common.django_utils import arender
 from django.shortcuts import redirect
-from .forms import ArticleForm
+from .forms import ArticleForm, UpdateUserForm
 from .models import Article
 
 @awriter_required
@@ -45,3 +45,38 @@ async def update_article(request: HttpRequest, article: Article) -> HttpResponse
 
     context = {'update_article_form': form}
     return await arender(request, 'writer/update-article.html', context)
+
+@awriter_required
+@ensure_for_current_user(Article, redirect_if_missing = 'my-articles')
+async def delete_article(request: HttpRequest, article: Article) -> HttpResponse:
+    if request.method == 'POST':
+        await article.adelete()
+        return redirect('my-articles')
+    else:
+        context = {'article': article}
+        return await arender(request, 'writer/delete-article.html', context)
+    
+
+@awriter_required
+async def update_user(request: HttpRequest) -> HttpResponse:
+    current_user = await aget_user(request)
+    if request.method == 'POST':
+        form = UpdateUserForm(request.POST, instance = current_user)
+        if await form.ais_valid():
+            await form.asave()
+            return redirect('update-user')
+    else:
+        form = UpdateUserForm(instance = current_user)
+
+    context = {'update_user_form': form}
+    return await arender(request, 'writer/update-user.html', context)
+
+
+@awriter_required
+async def delete_account(request: HttpRequest) -> HttpResponse:
+    current_user = await aget_user(request)
+    if request.method == 'POST':
+        await current_user.adelete()
+        return redirect('home')
+    context = {'user': current_user}
+    return await arender(request, 'writer/delete-account.html', context)
