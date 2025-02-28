@@ -1,0 +1,37 @@
+{% extends 'client/_main.html' %}
+{% load i18n %}
+
+{% block content %}
+    {% if articles %}
+        {% for article in articles %}
+        <div class="container bg-white shadow p-5 mt-5 form-layout-article {% if article.is_premium %}premium-article{% endif %}">
+            <h3>{{ article.title }}</h3>
+            <p>
+                <strong>
+                    {% if article.is_premium %}
+                        <span class="text-article-premium">🌟 {% translate 'Premium Article' %}</span>
+                    {% else %}
+                        🗑️ {% translate 'Standard Article' %}
+                    {% endif %}
+                </strong>
+            </p>
+            <p>{{ article.content }}</p>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center no-wrap">
+                <em>{{ article.date_posted }}</em>
+                <em>Written by {{ article.user.first_name }} {{ article.user.last_name }}</em>
+            </div>
+            </div>
+        {% endfor %}
+    {% elif has_subscription %}
+        <div class="container bg-white shadow p-5 mt-5 form-layout text-center">
+            <h5>{% translate 'No articles found for the given filters.' %}</h5>
+        </div>
+    {% else %}
+        <div class="container bg-white shadow p-5 mt-5 form-layout text-center">
+            <h5>{% translate 'Hi! Thanks for being a registered user!' %}</h5>
+            <strong><em>{% translate 'Before you can browse any articles, you need to activate an subscription.' %}</em></strong>
+        </div>
+    {% endif %}
+{% endblock content %}
+        

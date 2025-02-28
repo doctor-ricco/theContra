@@ -2,13 +2,28 @@
 {% load i18n %}
 
 {% block content %}
+
+    {% if not my_articles %}
+        <div class="container bg-white shadow p-5 form-layout-article text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <h5>{% translate "You still haven't written any article" %}</h5>
+            <p>
+                <strong>
+                    <em>{% translate "What's your perspective on the market right now?" %}</em>
+                </strong>
+            </p>
+            <a href="{% url 'create-article' %}" class="btn-primary" style="margin: 0; margin-top: 24px;">
+                {% translate "Start writing your first article" %}
+            </a>
+        </div>
+    {% endif %}
+
     {% for article in my_articles %}
         <div class="container bg-white shadow p-5 mt-5 form-layout-article {% if article.is_premium %}premium-article{% endif %}">
             <h3>{{ article.title }}</h3>
             <p>
                 <strong>
                     {% if article.is_premium %}
-                        <span class="text-animated">🌟 {% translate 'Premium Article' %}</span>
+                        <span class="text-article-premium">🌟 {% translate 'Premium Article' %}</span>
                     {% else %}
                         🗑️ {% translate 'Standard Article' %}
                     {% endif %}

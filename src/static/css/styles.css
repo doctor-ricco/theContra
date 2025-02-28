@@ -5,6 +5,26 @@ body {
 
 .navbar {
     background-color: #EDEDED;
+    padding: 10px;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    /* Center align text horizontally */
+    text-align: center;
+    /* Center align items vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-btn {
+    padding: 0px 0px 0px 10px;
 }
 
 .form-layout {
@@ -143,33 +163,48 @@ body {
     border-radius: 30px;
 }
 
-/* Animação existente - atualizar para nova versão */
-@keyframes text-animation {
+@keyframes premium-text-glow {
     0% {
-        color: #FFD700;
         text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
-    
     25% {
-        color: #FFA500;
         text-shadow: 0 0 12px rgba(255, 165, 0, 0.7);
     }
     50% {
-        color: #FFD700;
         text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
     75% {
-        color: #FFE55C;
         text-shadow: 0 0 15px rgba(255, 229, 92, 0.9);
     }
     100% {
-        color: #FFD700;
         text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
 }
 
-.text-animated {
-    animation: text-animation 2s ease-in-out infinite;
+.text-account-premium {
+    font-size: 1rem;
+    font-style: italic;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #FFE55C, #FFD700, #FFA500, #FFD700);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: 
+    wave-text 3s linear infinite,
+    premium-text-glow 2s ease-in-out infinite;
+    display: inline-block;
+}
+
+.text-article-premium {
+    font-style: italic;
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700, #FFE55C, #FFD700, #FFA500, #FFD700);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: 
+        wave-text 3s linear infinite,
+        premium-text-glow 2s ease-in-out infinite;
     display: inline-block;
 }
 
@@ -197,27 +232,26 @@ small.text-muted {
     display: none !important;
 }
 
-/* Nova animação para borda premium */
 @keyframes border-glow {
     0% {
         border: 4px solid #FFD700;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
     }
     25% {
         border: 4px solid #FFA500;
-        box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+        box-shadow: 0 0 20px rgba(255, 165, 0, 0.9), 0 0 40px rgba(255, 165, 0, 0.5);
     }
     50% {
         border: 4px solid #FFD700;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
     }
     75% {
         border: 4px solid #FFE55C;
-        box-shadow: 0 0 25px rgba(255, 229, 92, 0.6);
+        box-shadow: 0 0 25px rgba(255, 229, 92, 1), 0 0 50px rgba(255, 229, 92, 0.6);
     }
     100% {
         border: 4px solid #FFD700;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
     }
 }
 
@@ -226,11 +260,40 @@ small.text-muted {
     position: relative;
     border-radius: 40px;
     overflow: hidden;
-    padding: 4px; /* Espaço para a borda animada */
+    padding: 4px;
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
-/* Ajuste de posicionamento para compensar o padding adicional */
 .premium-article > * {
     position: relative;
     z-index: 1;
+}
+
+.text-account-writer {
+    font-size: 1rem;
+    background: linear-gradient(90deg, #84b0c1, #4a9cc7, #2b85b8, #1a6d9e, #2b85b8, #4a9cc7, #84b0c1);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: wave-text 3s linear infinite;
+}
+
+.text-account-client {
+    font-size: 1rem;
+    background: linear-gradient(90deg, #84c196, #4ac76e, #2bb850, #1a9e4a, #2bb850, #4ac76e, #84c196);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: wave-text 3s linear infinite;
+}
+
+@keyframes wave-text {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
 }
